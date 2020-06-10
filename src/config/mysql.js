@@ -11,3 +11,5 @@ connection.connect(err => {
   if(err) throw err
   console.log("You're now connected...")
 })
+
+module.exports = connection
