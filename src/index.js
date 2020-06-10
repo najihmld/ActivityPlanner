@@ -3,6 +3,8 @@ const Route = express.Router()
 
 const auth = require('./routes/auth')
 
-Route.use('/auth', auth)
+Route
+  .use('/auth', auth)
+module.exports = Route
 
 
