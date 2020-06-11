@@ -38,5 +38,20 @@ module.exports = {
         }
       })
     })
+  }, 
+  updateUser: (setData, id) => {
+    return new Promise((resolve, reject) => {
+      connection.query('UPDATE users SET ? WHERE id=?', [setData, id], (err, result) => {
+        if (!err) {
+          const newResult = {
+            id: id,
+            ...setData
+          }
+          resolve(newResult)
+        } else {
+          reject(new Error(err))
+        }
+      })
+    })
   }
 }

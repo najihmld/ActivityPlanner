@@ -6,7 +6,6 @@ module.exports = {
     const token = request.headers.authorization
 
     jwt.verify(token, '210798', (err, result) => {
-      console.log(result)
       if (
         (err && err.name === 'TokenExpiredError') ||
         (err && err.name === 'JsonWebTokenError')
@@ -26,7 +25,6 @@ module.exports = {
     const token = request.headers.authorization
 
     jwt.verify(token, '210798', (err, result) => {
-      console.log(result)
       if (
         (err && err.name === 'TokenExpiredError') ||
         (err && err.name === 'JsonWebTokenError')
@@ -46,7 +44,6 @@ module.exports = {
     const token = request.headers.authorization
 
     jwt.verify(token, '210798', (err, result) => {
-      console.log(result)
       if (
         (err && err.name === 'TokenExpiredError') ||
         (err && err.name === 'JsonWebTokenError')
@@ -66,7 +63,6 @@ module.exports = {
     const token = request.headers.authorization
 
     jwt.verify(token, '210798', (err, result) => {
-      console.log(result)
       if (
         (err && err.name === 'TokenExpiredError') ||
         (err && err.name === 'JsonWebTokenError')
@@ -86,7 +82,6 @@ module.exports = {
     const token = request.headers.authorization
 
     jwt.verify(token, '210798', (err, result) => {
-      console.log(result)
       if (
         (err && err.name === 'TokenExpiredError') ||
         (err && err.name === 'JsonWebTokenError')

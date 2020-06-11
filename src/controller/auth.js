@@ -1,4 +1,4 @@
-const { addUser, loginUser, getUsers } = require('../model/auth')
+const { addUser, loginUser, getUsers, updateUser } = require('../model/auth')
 const helper = require('../helper')
 const jwt = require('jsonwebtoken')
 
@@ -37,6 +37,21 @@ module.exports = {
   getUsers: async (req, res) => {
     try {
       const result = await getUsers()
+      return helper.response(res, 200, result)
+    } catch (err) {
+      return helper.response(res, 404, err)
+    }
+  },
+  updateUser: async (req, res) => {
+    try {
+      const setData = {
+        role: req.body.role,
+        name: req.body.name,
+        username: req.body.username,
+        password: req.body.password
+      }
+      const id = req.params.id
+      const result = await updateUser(setData, id)
       return helper.response(res, 200, result)
     } catch (err) {
       return helper.response(res, 404, err)
