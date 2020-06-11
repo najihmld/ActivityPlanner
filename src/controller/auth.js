@@ -1,4 +1,4 @@
-const { addUser, loginUser } = require('../model/auth')
+const { addUser, loginUser, getUsers } = require('../model/auth')
 const helper = require('../helper')
 const jwt = require('jsonwebtoken')
 
@@ -30,6 +30,14 @@ module.exports = {
         token: token
       }
       return helper.response(res, 200, newResult)
+    } catch (err) {
+      return helper.response(res, 404, err)
+    }
+  },
+  getUsers: async (req, res) => {
+    try {
+      const result = await getUsers()
+      return helper.response(res, 200, result)
     } catch (err) {
       return helper.response(res, 404, err)
     }
