@@ -17,9 +17,15 @@ module.exports = {
       })
     })
   },
-  loginUser: () => {
+  loginUser: data => {
     return new Promise((resolve, reject) => {
-
+      connection.query('SELECT * FROM users WHERE username=? AND password=?', [data.username, data.password], (err, result) => {
+        if (!err) {
+          resolve(result[0])
+        } else {
+          reject(new Error(err))
+        }
+      })
     })
   }
 }
