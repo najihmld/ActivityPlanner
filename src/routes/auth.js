@@ -1,12 +1,11 @@
 const express = require('express');
 const Route = express.Router();
-const { superAdmin } = require('../middleware/auth')
+const { superAdmin } = require('../middleware')
 
-const { loginUser, addUser, getUsers, updateUser } = require('../controller/auth')
+const { 
+  loginUser, addUser } = require('../controller/auth')
 
 Route
   .post('/login', loginUser)
-  .post('/adduser', superAdmin, addUser)
-  .get('/users', superAdmin, getUsers)
-  .put('/:id', superAdmin, updateUser)
+  .post('/register', superAdmin, addUser)
 module.exports = Route
