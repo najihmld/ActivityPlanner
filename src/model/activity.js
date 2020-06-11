@@ -1,6 +1,18 @@
 const connection = require('../config/mysql')
+const jwt = require('jsonwebtoken')
 
 module.exports = {
+  getActivity: () => {
+    return new Promise((resolve, reject) => {
+      connection.query('SELECT * FROM activity', (err, result) => {
+        if (!err) {
+          resolve(result)
+        } else {
+          reject(new Error(err))
+        }
+      })
+    })
+  },
   addActivity: setData => {
     return new Promise((resolve, reject) => {
       connection.query('INSERT INTO activity SET ?', [setData], (err, result) => {
@@ -23,6 +35,21 @@ module.exports = {
           const newResult = {
             id: result.insertId,
             ...setData
+          }
+          resolve(newResult)
+        } else {
+          reject(new Error(err))
+        }
+      })
+    })
+  },
+  deleteActivity:  id => {
+    return new Promise((resolve, reject) => {
+      connection.query('DELETE FROM activity WHERE id=?', [id], (err, result) => {
+        console.log(err)
+        if (!err) {
+          const newResult = {
+            message: 'Successfully deleted activity!'
           }
           resolve(newResult)
         } else {
