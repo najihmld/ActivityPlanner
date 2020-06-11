@@ -1,6 +1,5 @@
 const { getUsers, updateUser, deleteUser } = require('../model/user')
 const helper = require('../helper')
-const jwt = require('jsonwebtoken')
 
 module.exports = {
   getUsers: async (req, res) => {

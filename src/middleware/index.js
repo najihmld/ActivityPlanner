@@ -31,7 +31,10 @@ module.exports = {
       ) {
         const result = { message: err.message }
         return helper.response(response, 403, result)
-      } else if (result.result.role !== '2') {
+      } else if (
+          (result.result.role !== '2') &&
+          (result.result.role !== '1')
+      ) {
         const result = { message:"You don't have permission"}
         return helper.response(response, 403, result)
       } else {
@@ -50,7 +53,11 @@ module.exports = {
       ) {
         const result = { message: err.message }
         return helper.response(response, 403, result)
-      } else if (result.result.role !== '3') {
+      } else if (
+        (result.result.role !== '3') &&
+        (result.result.role !== '2') &&
+        (result.result.role !== '1')
+      ) {
         const result = { message:"You don't have permission"}
         return helper.response(response, 403, result)
       } else {
@@ -69,7 +76,11 @@ module.exports = {
       ) {
         const result = { message: err.message }
         return helper.response(response, 403, result)
-      } else if (result.result.role !== '4') {
+      } else if (
+        (result.result.role !== '4') &&
+        (result.result.role !== '2') &&
+        (result.result.role !== '1')
+      ) {
         const result = { message:"You don't have permission"}
         return helper.response(response, 403, result)
       } else {
@@ -88,7 +99,11 @@ module.exports = {
       ) {
         const result = { message: err.message }
         return helper.response(response, 403, result)
-      } else if (result.result.role !== '5') {
+      } else if (
+        (result.result.role !== '5') &&
+        (result.result.role !== '2') &&
+        (result.result.role !== '1')
+      ) {
         const result = { message:"You don't have permission"}
         return helper.response(response, 403, result)
       } else {
