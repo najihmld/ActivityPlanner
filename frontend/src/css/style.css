@@ -1,4 +1,10 @@
 
+html, #root {
+  background-color: #fafafa;
+}
+
+/* login style */
+
 .login-container {
   background-color: #fff;
   height: 100vh;
@@ -44,4 +50,63 @@
 .text-login {
   margin-bottom: 20px;
 }
+
+/* home style */
+
+.col-side {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  background-color: #fafafa;
+}
+
+.side-container {
+  background-image: linear-gradient(
+    to right bottom,
+    rgba(126,213,111,0.95),
+    rgba(40,180,133,0.95)),
+    url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80");
+  padding-top: 2%;
+  position: fixed;
+  height: 100vh;
+}
+
+.main-container {
+  background-color: #fafafa;
+  position: relative;
+  margin: 0 auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.menu {
+  background-color: transparent;
+  width: 100%;
+  color: #fff;
+  padding: 10px;
+  padding-left: 20px;
+  border: none;
+  outline:none;
+  text-align: left;
+}
+
+.menu-active {
+  background-color: #fafafa;
+  color: #28b485;
+}
+
+.menu:focus {
+  border: none;
+  outline:none;
+}
+
+.card {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #ffffff !important;
+}
+
+.card-title {
+  color: #28b485 !important;
+}
+
 

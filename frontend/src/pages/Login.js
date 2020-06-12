@@ -1,5 +1,4 @@
 import React from 'react'
-import { Button } from 'react-bootstrap';
 import '../css/style.css'
 import axios from 'axios';
 import qs from 'qs';
@@ -57,7 +56,7 @@ class Login extends React.Component {
     return (
       <div className="container-fluid">
         <div className="row">
-        <div className="login-container col-xl-4 col-lg-5 col-md-6 col-sm-7">
+        <div className="login-container col-xl-3 col-lg-4 col-md-5 col-sm-6">
           <form className="col form-container">
             <h3 className="text-login">Login</h3>
             <div className="form-group">
@@ -73,13 +72,13 @@ class Login extends React.Component {
                 className="form-control"
                 onChange={text => this.handleInput(text, 'password')} />
             </div>
-            <Button
+            <button type="submit"
               className="btn btn-login"
               onClick={(event) => this.handleSubmitLogin(event)}
-            >Login</Button>
+            >Login</button>
           </form>
         </div>
-        <div className="login-bg d-none d-sm-block col-xl-8 col-lg-7 col-md-6 col-sm-5">
+        <div className="login-bg d-none d-sm-block col-xl-9 col-lg-8 col-md-7 col-sm-6">
         </div>
       </div>
       </div>
