@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 module.exports = {
   getActivity: () => {
     return new Promise((resolve, reject) => {
-      connection.query('SELECT * FROM activity', (err, result) => {
+      connection.query('SELECT * FROM activity ORDER BY id DESC', (err, result) => {
         if (!err) {
           resolve(result)
         } else {
