@@ -62,13 +62,13 @@ class Main extends React.Component {
 
               {activity.map((item) => {
                 let role = []
-                if (item.role == '5') {
+                if (item.role === '5') {
                   role.push('Operator')
-                } else if (item.role == '4') {
+                } else if (item.role === '4') {
                   role.push('Head of Engineering')
-                } else if (item.role == '3') {
+                } else if (item.role === '3') {
                   role.push('Director')
-                } else if (item.role == '2') {
+                } else if (item.role === '2') {
                   role.push('Admin')
                 } else {
                   role.push('Super Admin')
@@ -84,10 +84,10 @@ class Main extends React.Component {
                 )
               })}
 
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
+       </div>
+     </div>
     )
   }
 }

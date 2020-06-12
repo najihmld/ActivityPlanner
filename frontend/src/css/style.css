@@ -105,8 +105,61 @@ html, #root {
   background-color: #ffffff !important;
 }
 
+
 .card-title {
   color: #28b485 !important;
+}
+
+.card-body-user {
+  display: inline-flex;
+  padding: 0px !important;
+  max-height: 120px;
+}
+
+.card-img {
+  max-width: 120px;
+}
+
+.card-text-user {
+  padding: 20px;
+}
+
+.card-position {
+  font-size: 14px;
+  color: #28b485;
+}
+
+.card-name {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.card-username {
+  margin-top: -2px;
+  color: #b4b4b4;
+}
+
+.card-action {
+  position: absolute;
+  display: inline-flex;
+  right: 20px;
+  top: 20px;
+}
+
+.card-action-btn {
+  background-color: #fafafa;
+  color: #28b485;
+  border: none;
+  outline:none;
+  text-align: left;
+  margin-left: 5px;
+  width: 80px;
+  text-align: center;
+}
+
+.warning {
+  color: #ec3838
 }
 
 
