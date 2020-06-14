@@ -3,7 +3,7 @@ const connection = require('../config/mysql')
 module.exports = {
   getUsers: () => {
     return new Promise((resolve, reject) => {
-      connection.query('SELECT id, role, name, username FROM users', (err, result) => {
+      connection.query('SELECT * FROM users', (err, result) => {
         if (!err) {
           resolve(result)
         } else {
