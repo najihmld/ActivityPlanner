@@ -6,6 +6,7 @@ import { Modal, Button } from 'react-bootstrap'
 import UpdateUser from '../components/UpdateUser'
 import AddUser from '../components/AddUser'
 import DeleteItem from '../components/DeleteItem'
+import MenuNav from '../components/MenuNav'
 
 class Users extends React.Component {
   state = {
@@ -30,36 +31,12 @@ class Users extends React.Component {
     .then(res => {
       const datas = res.data.data
       this.setState({users: datas})
-      console.log(this.state.users)
+      // console.log(this.state.users)
     })
     .catch(err => {
         console.log(err);
     })
   }
-  
-  toHome(event) {
-    event.preventDefault();
-    this.props.history.push('/')
-  }
-
-  toUsers(event) {
-    event.preventDefault();
-    this.props.history.push('/users')
-  }
-
-
-  editItem = () => {
-    this.setState({show: true})
-  }
-
-  handleClose = () => {
-    this.setState({show: false, showAddUser: false, deleteModal: false})
-  }
-
-  showAddUser = () => {
-    this.setState({showAddUser: true})
-  }
-
 
   render() {
     const { users, show, showAddUser, deleteModal } = this.state
@@ -67,26 +44,19 @@ class Users extends React.Component {
       <div className="container-fluid">
         <div className="row">
           <div className="col-side col-xl-2 col-lg-2 col-md-2 col-sm-3">
-            <div className="side-container">
-              <button type="button"
-                className="menu"
-                onClick={(event) => this.toHome(event)}>Activity</button>
-              <button type="button"
-                className="menu menu-active"
-                onClick={(event) => this.toUsers(event)}>Users</button>
+          <div className="side-container">
+              <MenuNav
+                history={this.props.history}
+                activityClass="menu"
+                usersClass="menu menu-active"
+                logoutClass="menu"
+              />
             </div>
           </div>
           <div className="main-container col-xl-10 col-lg-10 col-md-8 col-sm-12">
           <div className="container-sm col-md-10">
-
-          <button type="button"
-                className="menu menu-add"
-                onClick={() => this.showAddUser()}>Add User</button>
-          <AddUser
-            showAddUser={showAddUser}
-            title={"Add User"}
-            onClose={this.handleClose}
-          />
+            
+          <AddUser />
 
             {users.map((item) => {
                 let role = []
@@ -103,10 +73,6 @@ class Users extends React.Component {
                 }
               return (
                <>
-                <UpdateUser show={show}
-                  title="Edit User"
-                  onClose={this.handleClose}
-                  data={item}/>
                 <div key={item.id} className="card">
                   <div className="card-body-user">
                     <div className="card-img">
@@ -118,18 +84,15 @@ class Users extends React.Component {
                       <h6 className="card-username">@{item.username}</h6>
                     </div>
                     <div className="card-action">
-                    <button type="button"
-                      className="card-action-btn"
-                      onClick={() => this.editItem()}>Edit</button>
-                    <button type="button"
-                      className="card-action-btn warning"
-                      onClick={() => this.setState({deleteModal: true})}>Delete
-                    </button>
+               
+
+                    <UpdateUser
+                      data={item}/>
+
                     <DeleteItem
-                      show={deleteModal}
-                      onClose={this.handleClose}
                       data={item.id}
-                    />
+                    /> 
+
                     </div>
                   </div>
                 </div>

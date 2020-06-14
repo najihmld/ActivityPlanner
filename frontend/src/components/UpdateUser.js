@@ -1,6 +1,7 @@
 import React from 'react'
 import { Modal, Button, Form } from 'react-bootstrap'
 import axios from 'axios';
+import '../css/style.css'
 
 
 class UpdateUser extends React.Component {
@@ -9,7 +10,8 @@ class UpdateUser extends React.Component {
     name: this.props.data.name,
     username: this.props.data.username,
     password: this.props.data.password,
-    role: this.props.data.role
+    role: this.props.data.role,
+    show: false
   }
 
   handleInput = (text, type) => {
@@ -29,29 +31,37 @@ class UpdateUser extends React.Component {
     { headers: { 'Authorization': localStorage.token} })
     .then(res => {
       if(res.status === 200) {
-        this.props.onClose()
+        this.handleClose()
       }
     })
     .catch(err => {
         console.log(err);
     })
   }
+
+  editItem = () => {
+    this.setState({show: true})
+  }
   
+  handleClose = () => {
+    this.setState({show: false})
+  }
 
   render() {
-    const { show, title, onClose, data } = this.props
-    const { name, username, password, role } = this.state
+    const { data } = this.props
     return (
-      <Modal show={show} >
-      <Modal.Header>
-      <Modal.Title>{title}</Modal.Title>
+      <>
+      
+      <Modal show={this.state.show} onHide={this.handleClose}>
+      <Modal.Header closeButton>
+      <Modal.Title>Edit user</Modal.Title>
       </Modal.Header>
       <Modal.Body>
       <Form>
         <Form.Group>
           <Form.Label>Name</Form.Label>
           <Form.Control
-            defaultValue={name}
+            defaultValue={data.name}
             placeholder="Enter name"
             onChange={text => this.handleInput(text, 'name')}
           />
@@ -59,7 +69,7 @@ class UpdateUser extends React.Component {
         <Form.Group>
           <Form.Label>Username</Form.Label>
           <Form.Control
-            defaultValue={username}
+            defaultValue={data.username}
             placeholder="Enter username"
             onChange={text => this.handleInput(text, 'username')}
           />
@@ -67,7 +77,7 @@ class UpdateUser extends React.Component {
         <Form.Group>
           <Form.Label>Password</Form.Label>
           <Form.Control
-            defaultValue={password}
+            defaultValue={data.password}
             type="password"
             placeholder="Enter password"
             onChange={text => this.handleInput(text, 'password')}
@@ -76,7 +86,7 @@ class UpdateUser extends React.Component {
         <Form.Group >
           <Form.Label>Position</Form.Label>
           <Form.Control
-            defaultValue={role}
+            defaultValue={data.role}
             onChange={text => this.handleInput(text, 'role')}
             as="select">
               <option value="1">1. Super Admin</option>
@@ -89,15 +99,22 @@ class UpdateUser extends React.Component {
       </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={onClose}>
+        <Button variant="secondary" onClick={this.handleClose}>
           Cancel
         </Button>
         <Button variant="menu menu-add"
           onClick={() => this.handleUpdate(data.id)}>
-          Update
+          Save
         </Button>
       </Modal.Footer>
     </Modal>
+
+    <button type="button"
+    className="card-action-btn"
+    onClick={() => this.editItem()}>Edit</button>
+      
+      </>
+
     )
   }
 }

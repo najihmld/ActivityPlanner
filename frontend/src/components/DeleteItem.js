@@ -4,12 +4,15 @@ import axios from 'axios';
 
 
 class DeleteItem extends React.Component {
+  state = {
+    show: false
+  }
 
   deleteItem = (id) => {
     axios.delete(`http://127.0.0.1:3002/user/${id}`,
     { headers: { 'Authorization': localStorage.token} })
     .then(res => {
-      this.props.onClose()
+      this.handleClose()
     })
     .catch(err => {
         console.log(err);
@@ -17,22 +20,33 @@ class DeleteItem extends React.Component {
    
   }
 
+  handleClose = () => {
+    this.setState({show: false})
+  }
+
   render() {
-    const { onClose, show, data } = this.props
+    const { show } = this.state
     return (
-      <Modal show={show} onHide={onClose}>
+      <>
+      <Modal show={show} onHide={this.handleClose}>
           <Modal.Header closeButton>
           <h5>Are you sure to delete this user?</h5>
           </Modal.Header>
           <Modal.Footer>
-            <Button variant="secondary" onClick={onClose}>
+            <Button variant="secondary" onClick={this.handleClose}>
               Cancel
             </Button>
-            <Button variant="danger" onClick={() => this.deleteItem(data)}>
+            <Button variant="danger" onClick={() => this.deleteItem(this.props.data)}>
               Delete
             </Button>
           </Modal.Footer>
         </Modal>
+
+        <button type="button"
+            className="card-action-btn warning"
+            onClick={() => this.setState({show: true})}>Delete
+        </button>
+      </>
     )
   }
 }
