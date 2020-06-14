@@ -44,7 +44,7 @@ module.exports = {
   updateActivity: async (req, res) => {
     try {
       const setData = {
-        to: req.body.to,
+        role: req.body.role,
         title: req.body.title,
         description: req.body.description
       }
