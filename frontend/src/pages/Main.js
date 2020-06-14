@@ -36,9 +36,9 @@ class Main extends React.Component {
     this.props.history.push('/')
   }
 
-  toDashboard(event) {
+  toUsers(event) {
     event.preventDefault();
-    this.props.history.push('/dashboard')
+    this.props.history.push('/users')
   }
 
 
@@ -51,10 +51,10 @@ class Main extends React.Component {
             <div className="side-container">
               <button type="button"
                 className="menu menu-active"
-                onClick={(event) => this.toHome(event)}>Home</button>
+                onClick={(event) => this.toHome(event)}>Activity</button>
               <button type="button"
                 className="menu"
-                onClick={(event) => this.toDashboard(event)}>Dashboard</button>
+                onClick={(event) => this.toUsers(event)}>Users</button>
             </div>
           </div>
           <div className="main-container col-xl-10 col-lg-10 col-md-8 col-sm-12">

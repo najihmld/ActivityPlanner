@@ -1,10 +1,18 @@
 import React from 'react'
 import '../css/style.css'
 import axios from 'axios';
+import { Modal, Button } from 'react-bootstrap'
 
-class Dashboard extends React.Component {
+import UpdateUser from '../components/UpdateUser'
+import AddUser from '../components/AddUser'
+import DeleteItem from '../components/DeleteItem'
+
+class Users extends React.Component {
   state = {
-    users: []
+    users: [],
+    show: false,
+    showAddUser: false,
+    deleteModal: false,
   }
 
   componentDidMount() {
@@ -34,26 +42,27 @@ class Dashboard extends React.Component {
     this.props.history.push('/')
   }
 
-  toDashboard(event) {
+  toUsers(event) {
     event.preventDefault();
-    this.props.history.push('/dashboard')
+    this.props.history.push('/users')
   }
 
-  deleteItem = (id) => {
-    axios.delete(`http://127.0.0.1:3002/user/${id}`,
-    { headers: { 'Authorization': localStorage.token} })
-    .then(res => {
-      
-    })
-    .catch(err => {
-        console.log(err);
-    })
-   
+
+  editItem = () => {
+    this.setState({show: true})
+  }
+
+  handleClose = () => {
+    this.setState({show: false, showAddUser: false, deleteModal: false})
+  }
+
+  showAddUser = () => {
+    this.setState({showAddUser: true})
   }
 
 
   render() {
-    const { users } = this.state
+    const { users, show, showAddUser, deleteModal } = this.state
     return (
       <div className="container-fluid">
         <div className="row">
@@ -61,14 +70,23 @@ class Dashboard extends React.Component {
             <div className="side-container">
               <button type="button"
                 className="menu"
-                onClick={(event) => this.toHome(event)}>Home</button>
+                onClick={(event) => this.toHome(event)}>Activity</button>
               <button type="button"
                 className="menu menu-active"
-                onClick={(event) => this.toDashboard(event)}>Dashboard</button>
+                onClick={(event) => this.toUsers(event)}>Users</button>
             </div>
           </div>
           <div className="main-container col-xl-10 col-lg-10 col-md-8 col-sm-12">
           <div className="container-sm col-md-10">
+
+          <button type="button"
+                className="menu menu-add"
+                onClick={() => this.showAddUser()}>Add User</button>
+          <AddUser
+            showAddUser={showAddUser}
+            title={"Add User"}
+            onClose={this.handleClose}
+          />
 
             {users.map((item) => {
                 let role = []
@@ -84,6 +102,11 @@ class Dashboard extends React.Component {
                   role.push('Super Admin')
                 }
               return (
+               <>
+                <UpdateUser show={show}
+                  title="Edit User"
+                  onClose={this.handleClose}
+                  data={item}/>
                 <div key={item.id} className="card">
                   <div className="card-body-user">
                     <div className="card-img">
@@ -97,13 +120,20 @@ class Dashboard extends React.Component {
                     <div className="card-action">
                     <button type="button"
                       className="card-action-btn"
-                      onClick={(event) => this.toDashboard(event)}>Edit</button>
+                      onClick={() => this.editItem()}>Edit</button>
                     <button type="button"
                       className="card-action-btn warning"
-                      onClick={() => this.deleteItem(item.id)}>Delete</button>
+                      onClick={() => this.setState({deleteModal: true})}>Delete
+                    </button>
+                    <DeleteItem
+                      show={deleteModal}
+                      onClose={this.handleClose}
+                      data={item.id}
+                    />
                     </div>
                   </div>
                 </div>
+               </>
               )
             })}
 
@@ -115,4 +145,4 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard
+export default Users

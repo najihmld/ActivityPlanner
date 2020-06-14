@@ -158,8 +158,25 @@ html, #root {
   text-align: center;
 }
 
+.card-action-btn:focus {
+  border: none;
+  outline:none;
+}
+
 .warning {
   color: #ec3838
+}
+
+/* button add */
+.menu-add {
+  color: #fafafa !important;
+  background-color: #60c372 !important;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.menu-add:hover {
+  background-color: #28b485 !important;
 }
 
 

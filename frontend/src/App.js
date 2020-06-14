@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import Main from './pages/Main'
 import Login from './pages/Login'
-import Dashboard from './pages/Dashboard'
+import Users from './pages/Users'
 
 class App extends React.Component {
   render () {
@@ -12,7 +12,7 @@ class App extends React.Component {
         <Switch>
           <Route path='/' exact render={(props) => (<Main{...props}/>)} />
           <Route path='/login' render={(props) => (<Login{...props}/>)} />
-          <Route path='/dashboard' render={(props) => (<Dashboard{...props}/>)} />
+          <Route path='/users' render={(props) => (<Users{...props}/>)} />
         </Switch>
       </BrowserRouter>
     )
