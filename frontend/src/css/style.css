@@ -68,6 +68,7 @@ html, #root {
   padding-top: 2%;
   position: fixed;
   height: 100vh;
+  z-index: 2;
 }
 
 .main-container {
@@ -180,3 +181,26 @@ html, #root {
 }
 
 
+@media (max-width: 768px) {
+  .side-container {
+    background-image: linear-gradient( to right bottom, rgba(126,213,111,0.95), rgba(40,180,133,0.95)), url(https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80);
+    padding-top: 0;
+    position: fixed;
+    height: 40px !important;
+    z-index: 2;
+    bottom: 0 !important;
+    display: inline-flex !important;
+    width: 100% !important;
+    text-align: center !important;
+  }
+  .menu {
+    text-align: center;
+  }
+
+  .menu-active {
+    text-align: center;
+    background-color: #fafafa;
+    color: #000;
+    opacity: 0.5;
+  }
+}
