@@ -1,5 +1,5 @@
-# ActivityPlanner
-Challenge No. 1
+# Challenge No. 1
+## ActivityPlanner
 
 ## Setup Database
 ```sh
